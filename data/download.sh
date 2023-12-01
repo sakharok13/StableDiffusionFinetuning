@@ -1,0 +1,1 @@
+wget https://huggingface.co/datasets/glue/laion/laion-pop/laion_pop.parquet

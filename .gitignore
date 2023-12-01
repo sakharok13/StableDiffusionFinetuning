@@ -1,0 +1,9 @@
+**/logs
+*/.parquet
+*.ipynb_checkpoints
+*.parquet
+*.jpg
+*laion-pop
+*images
+*venv
+
