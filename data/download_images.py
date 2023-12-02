@@ -6,11 +6,11 @@ import argparse
 from tqdm import tqdm
 
 def download_image(data):
+    
     image_dir='images'
-
     url, key = data
     image_path = os.path.join(image_dir, f'{key}.jpg')
-
+    
     if not os.path.exists(image_path):
         try:
             response = requests.get(url)
@@ -33,14 +33,14 @@ def main():
     args = parser.parse_args()
     
     df = pd.read_parquet(args.parquet_path)
-
+    
     image_dir = 'images'
     os.makedirs(image_dir, exist_ok=True)
     
     data_to_download = df[:args.img_count]
     data_to_download = [(url, key) for url, key in zip(data_to_download['url'], data_to_download['key'])]
     del df
-
+    
     with Pool(args.workers) as pool:
         list(tqdm(pool.imap_unordered(download_image, data_to_download), total=args.img_count))
     
